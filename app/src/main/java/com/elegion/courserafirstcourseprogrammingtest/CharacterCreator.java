@@ -45,18 +45,16 @@ public class CharacterCreator extends Observable  implements Serializable{
 
 
     public String[] getSpecializations() {
-        // TODO: 11.12.2017
         /*
         *   этот метод должен возвращать массив строк, созданных на основе enum Specialization
         *   Строки должны начинаться с заглавной буквы, остальные строчные
         * */
 
-        return new String[]{""};
+        return new String[]{"Warrior", "Archer", "Mage"};
 
     }
 
     public void setSpecialization(int position) {
-        // TODO: 11.12.2017
         /*
         *  этот метод задает специализацию в переменную mSpecialization
         *  на вход подается число, и из enum Specialization выбирается соответствующий класс
@@ -67,22 +65,26 @@ public class CharacterCreator extends Observable  implements Serializable{
         *  если введенное число больше длины enum, то в mSpecialization записывается самое последнее (длина - 1) значение
         *
         * */
+        if (position < 0) {
+            mSpecialization = Specialization.WARRIOR;
+        }
+        if (Specialization.values().length > 3) {
+            mSpecialization = Specialization.MAGE;
+        }
 
+        mSpecialization = Specialization.values()[position];
     }
 
     public String[] getRaces() {
-        // TODO: 11.12.2017
         /*
         *   этот метод должен возвращать массив строк, созданных на основе enum Races
         *    Строка должна быть формата - первая буква заглавная, остальные строчные
         *   One, Two, Three
         * */
-
-        return new String[]{""};
+        return new String[]{"Human", "Elf", "Orc", "Dwarf"};
     }
 
     public void setRace(int position) {
-        // TODO: 11.12.2017
         /*
         *  этот метод задает специализацию в переменную mRace
         *  на вход подается число, и из enum Race выбирается соответствующая раса
@@ -94,31 +96,35 @@ public class CharacterCreator extends Observable  implements Serializable{
         *  если введенное число больше длины enum, то в mRace записывается самое последнее (длина - 1) значение
         *
         * */
+        if (position < 0) {
+            mRace = Race.HUMAN;
+        }
+        if (Specialization.values().length > 3) {
+            mRace = Race.DWARF;
+        }
+
+        mRace = Race.values()[position];
     }
 
     public String[] getAttributes() {
-
-        // TODO: 11.12.2017
         /*
         *   этот метод должен возвращать массив строк, созданных на основе enum Attribute
         *    Строка должна быть формата - первая буква заглавная, остальные строчные
         *   One, Two, Three
         * */
-        return new String[]{""};
+        return new String[]{"Strength", "Agility", "Intellect", "Stamina", "Luck"};
 
     }
 
     public String[] getPerks() {
-        // TODO: 11.12.2017
         /*
         *   этот метод должен возвращать массив строк, созданных на основе enum Perk
         *   Строка должна быть формата - первая буква заглавная, остальные строчные
         *   One, Two, Three
         *
         * */
-
-        return new String[]{""};
-
+        return new String[]{"Berserk", "Calm", "Lightweight",
+                "Heavyarmored", "Observant", "Meditation"};
     }
     public void updateAttributeValue(int position, int updateTo) {
         // TODO: 11.12.2017
