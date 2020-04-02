@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 
-public class CharacterCreator extends Observable  implements Serializable{
+public class CharacterCreator extends Observable  implements Serializable {
 
     public enum Specialization {
         WARRIOR, ARCHER, MAGE
@@ -127,7 +127,6 @@ public class CharacterCreator extends Observable  implements Serializable{
                 "Heavyarmored", "Observant", "Meditation"};
     }
     public void updateAttributeValue(int position, int updateTo) {
-        // TODO: 11.12.2017
         /*
         *  этот метод увеличивает/уменьшает соответствующее значение атрибута
         *  рекомендуется реализовывать его в последнюю очередь
@@ -144,6 +143,7 @@ public class CharacterCreator extends Observable  implements Serializable{
         * 6. убедитесь в том, что измененное значение количества очков записано в mAvailablePoints;
         * 7. после изменения нужно вызвать методы setChanged(); notifyObservers();
         *    для того, чтобы изменения отразились на верстке
+        *
         *
         * пример работы алгоритма.
         * на вход подается (0, -1)
@@ -163,6 +163,17 @@ public class CharacterCreator extends Observable  implements Serializable{
         *       то мы не можем увеличить атрибут, ничего не происходит        *
         * */
 
+        String attributeName = Attribute.values()[position].name();
+        int attributeValueAfter = mAttributesMap.get(attributeName) + updateTo;
+
+        if ( (updateTo > 0 && mAvailablePoints >= updateTo) ||
+                (updateTo < 0 &&  attributeValueAfter > 0) ) {
+            mAttributesMap.put(attributeName, attributeValueAfter);
+            mAvailablePoints -= updateTo;
+
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public void setName(String name) {
